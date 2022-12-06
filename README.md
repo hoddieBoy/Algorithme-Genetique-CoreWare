@@ -14,13 +14,13 @@ Les sources java de l'application sont tous dans le repertoire src/
 ## Utilitaire de commandes
 
 Les commandes principales sont :
-    -"ant init" a utilisé au premier téléchargement du programme(Obligatoire)
-    -"ant install" pour installer toutes les librairies externes
-    -"ant compile" pour compiler tout le projet
-    -"ant javadoc" pour générer la javadoc (le fichier principal est alors doc/index.html) 
-    -"ant clean" pour nettoyer le projet
-    -"ant packaging" pour créer un jar contenant tous les .class
-    -"ant run" pour lancer le programme (lancer au prealable "ant init")
+    * "ant init" a utilisé au premier téléchargement du programme(Obligatoire)
+    * "ant install" pour installer toutes les librairies externes
+    * "ant compile" pour compiler tout le projet
+    * "ant javadoc" pour générer la javadoc (le fichier principal est alors doc/index.html) 
+    * "ant clean" pour nettoyer le projet
+    * "ant packaging" pour créer un jar contenant tous les .class
+    * "ant run" pour lancer le programme (lancer au prealable "ant init")
 
 ## Notices
 

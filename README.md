@@ -1,3 +1,7 @@
+# COREWARE
+
+## Introduction
+
 Application fournissant une interface graphique et un algorithm génétique
 pour le jeu de CoreWar. Il est possible de savoir le vainqueur de la partie en
 verifiant le score du joueur. Le score d'un joueur est le nombre d'instruction
@@ -7,6 +11,8 @@ de la fenetre qui vous propose de choisir le warrior où l'on doit charger le pr
 
 Les sources java de l'application sont tous dans le repertoire src/
 
+## Utilitaire de commandes
+
 Les commandes principales sont :
     -"ant init" a utilisé au premier téléchargement du programme(Obligatoire)
     -"ant install" pour installer toutes les librairies externes
@@ -15,6 +21,8 @@ Les commandes principales sont :
     -"ant clean" pour nettoyer le projet
     -"ant packaging" pour créer un jar contenant tous les .class
     -"ant run" pour lancer le programme (lancer au prealable "ant init")
+
+## Notices
 
 Le jar de l'application se trouvera dans le dossier dist/
 Pour excecuter le jar veuillez taper la commande 

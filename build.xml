@@ -1,0 +1,63 @@
+<project name="Corewar" default="compile" basedir=".">
+    <property name="projet.sources.dir" value="src"/>
+    <property name="projet.bin.dir" value="build"/>
+    <property name="projet.lib.dir" value="lib"/>
+
+    <path id="test.classpath">
+        <pathelement path="build/test"/>
+        <pathelement path="build/main"/>
+        <fileset dir="${projet.lib.dir}" includes="*.jar" />
+    </path>
+    <path id="projet.classpath">
+        <fileset dir="${projet.lib.dir}">
+            <include name="*.jar"/>
+        </fileset>
+        <pathelement location="${projet.bin.dir}"/>
+    </path>
+    <target name="compile" description="Compilation des classes">
+        <javac srcdir="${projet.sources.dir}" destdir="${projet.bin.dir}" debug="on" optimize="off" deprecation="on" includeantruntime="false">
+            <classpath refid="projet.classpath"/>
+        </javac>
+    </target>
+    <target name="init">
+        <echo message="Initialisation de ${ant.project.name}"/>
+        <delete dir="${basedir}/gen"/>
+        <delete dir="${projet.bin.dir}"/>
+        <mkdir dir="${basedir}/lib"/>
+        <mkdir dir="${basedir}/build"/>
+        <mkdir dir="${basedir}/gen"/>
+    </target>
+    <target name="install">
+        <echo message="Installation des librairies externes"/>
+        <mkdir dir="${basedir}/lib"/>
+        <get src="https://projectlombok.org/downloads/lombok.jar" dest="${projet.lib.dir}"/>
+    </target>
+    <target name="run" description="execution" depends="compile">
+        <java classname="application.Main" fork="true">
+            <classpath refid="projet.classpath"/>
+        </java>
+    </target>
+    <target name="javadoc">
+        <taskdef classname="lombok.delombok.ant.Tasks$Delombok" classpath="lib/lombok.jar" name="delombok" />
+        <mkdir dir="build/src-delomboked" />
+        <delombok verbose="true" encoding="UTF-8" to="build/src-delomboked" from="src">
+            <format value="suppressWarnings:skip" />
+        </delombok>
+        <javadoc sourcepath="build/src-delomboked" defaultexcludes="yes" destdir="doc"  private="yes"/>
+        <delete dir="build/src-delomboked"/>
+    </target>
+    <target name="packaging" depends="compile">
+        <mkdir dir="${basedir}/dist"/>
+        <jar jarfile="dist/Corewar.jar" basedir="${projet.bin.dir}" manifest="${basedir}/Manifest.txt"/>
+        <delete dir="build"/>
+    </target>
+
+    <target name="nettoyage">
+        <echo message="Debut du nettoyage du dossier" />
+        <delete dir="${basedir}/gen"/>
+        <delete dir="${projet.bin.dir}"/>
+        <delete dir="${basedir}/doc"/>
+        <echo message="Fin du nettoyage du dossier, vous pouvez mettre à jour le depot en ligne" />
+    </target>
+</project>  
+
